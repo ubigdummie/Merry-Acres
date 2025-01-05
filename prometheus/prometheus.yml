@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s # How often to scrape targets by default.
+
+scrape_configs:
+  - job_name: "snmp_exporter"
+    static_configs:
+      - targets:
+          - "snmp_exporter:9116" # Replace with the SNMP Exporter service in Docker
+  remote_write:
+  - url: "http://influxdb:8086/api/v2/write?org=MA&bucket=network_monitoring"
+    headers:
+      Authorization: "Token WmtGlHdCIKPJCJ3zTUMnHekDJBVoO9mDTw8yF0j_8brN9zV1ZaKO8KPJUWHrdUzkHBXbVGEAZaFKU-r15fGVgg=="
